@@ -51,3 +51,56 @@ settleUser2.appendChild(option2)
 
 }
 
+function addExpense(){
+
+let amount=parseFloat(document.getElementById("amount").value)
+let paidById=parseInt(document.getElementById("paidBy").value)
+
+let paidBy=users.find(u=>u.id===paidById)
+
+let split=amount/users.length
+
+users.forEach(user=>{
+
+if(user.id!==paidById){
+
+if(!paidBy.balances[user.name]) 
+paidBy.balances[user.name]=0
+if(!user.balances[paidBy.name]) 
+user.balances[paidBy.name]=0
+
+paidBy.balances[user.name]+=split
+user.balances[paidBy.name]-=split
+
+}
+
+})
+
+showBalances()
+}
+
+function showBalances(){
+
+let container=document.getElementById("balances")
+container.innerHTML=""
+
+users.forEach(user=>{
+
+for(let person in user.balances){
+
+let amount=user.balances[person]
+
+if(amount>0){
+
+let p=document.createElement("p")
+p.innerText=person+" owes "+user.name+" "+amount.toFixed(2)
+
+container.appendChild(p)
+
+}
+
+}
+
+})
+
+}
