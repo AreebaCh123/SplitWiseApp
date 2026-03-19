@@ -104,3 +104,21 @@ container.appendChild(p)
 })
 
 }
+function settleBalance(){
+    let user1Id = parseInt(document.getElementById("settleUser1").value)
+    let user2Id = parseInt(document.getElementById("settleUser2").value)
+    let amount = parseFloat(document.getElementById("settleAmount").value)
+
+    let user1 = users.find(u => u.id === user1Id)
+    let user2 = users.find(u => u.id === user2Id)
+    if(user1.balances[user2.name] !== undefined){
+        user1.balances[user2.name] += amount
+        
+    }
+    if(user2.balances[user1.name] !== undefined){
+        user2.balances[user1.name] -= amount
+        
+    }
+
+    showBalances()
+}
