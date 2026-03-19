@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splitly | Expense Sharing</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <h1><i class="fas fa-money-bill-transfer"></i> Splitly</h1>
+    <p>Fair splitting made simple</p>
+</header>
+
+<div class="main-container">
+        <aside class="card">
+            <h2><i class="fas fa-user-plus"></i> Add New Member</h2>
+            <div class="input-group">
+                <input type="text" id="name" placeholder="Full Name">
+                <input type="email" id="email" placeholder="Email Address">
+                <button class="btn-primary" onclick="addUser()">Add to Group</button>
+            </div>
+            
+            <hr>
+            
+            <h3><i class="fas fa-users"></i> Group Members</h3>
+            <ul id="userList" class="user-list">
+                <!-- Users will appear here -->
+            </ul>
+        </aside>
+
+        <main>
+            <section class="card">
+                <h2><i class="fas fa-receipt"></i> Record an Expense</h2>
+                <div class="form-row">
+                    <input type="number" id="amount" placeholder="Amount ($)">
+                    <select id="paidBy">
+                        <option value="" disabled selected>Who paid?</option>
+                    </select>
+                </div>
+                <button class="btn-success" onclick="addExpense()">Split Equally</button>
+            </section>
+
+            <section class="card">
+                <h2><i class="fas fa-chart-pie"></i> Current Balances</h2>
+                <div id="balances" class="balance-grid">
+                    <p class="empty-state">No balances yet. Add an expense!</p>
+                </div>
+            </section>
+
+            <section class="card settle-section">
+                <h2><i class="fas fa-handshake"></i> Settle Up</h2>
+                <div class="form-row">
+                    <select id="settleUser1"></select>
+                    <i class="fas fa-arrow-right"></i>
+                    <select id="settleUser2"></select>
+                </div>
+                <input type="number" id="settleAmount" placeholder="Amount to pay">
+                <button class="btn-outline" onclick="settleBalance()">Confirm Settlement</button>
+            </section>
+        </main>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
